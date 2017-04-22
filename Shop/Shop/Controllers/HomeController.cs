@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Models.SanPhamBus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,9 @@ namespace Shop.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            
+            return View(SanPhamBus.List());
+           
         }
 
         public ActionResult About()

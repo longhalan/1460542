@@ -1,0 +1,55 @@
+﻿@model PetaPoco.Page<shop.SANPHAM>
+
+
+<div class="col-sm-9 padding-right">
+    <div class="features_items">
+        <!--features_items-->
+        <h2 class="title text-center">Features Items</h2>
+        @foreach (var item in Model.Items)
+            {
+        <div class="col-sm-4"> 
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="~/@item.HinhAnh" alt="">
+                        <h2>@item.Gia</h2>
+                        <p>@item.TenSanPham</p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>
+                    
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                        <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+          }
+
+        <ul class="pagination">
+           @if (Model.CurrentPage > 1)
+           {
+            <li><a href="@Url.Action("Index", "Product", new { Page = Model.CurrentPage - 1})"><span class="fa fa-angle-left"></span> Prev</a></li>
+           }
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i == Model.CurrentPage)
+            {
+                <li class="active"><a href="@Url.Action("Index", "Product", new { Page = i})">@i</a></li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("Index", "Product", new { Page = i})">@i</a></li>
+            }
+
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <li><a href="@Url.Action("Index", "Product", new { Page = Model.CurrentPage + 1})">Next <span class="fa fa-angle-right"></span></a></li>
+        }
+        </ul>
+    </div><!--features_items-->
+</div>

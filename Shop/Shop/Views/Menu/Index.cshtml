@@ -1,0 +1,15 @@
+﻿@model IEnumerable<shop.LOAISANPHAM>
+
+@{
+    Layout = null;
+}
+<div class="brands-name">
+    <ul class="nav nav-pills nav-stacked">
+        @foreach (var item in Model)
+            {
+            <li><a href="@Url.Action("Index", "Product", new { id=item.MaLoaiSanPham})">@item.TenLoaiSanPham</a></li>
+        }
+    </ul>
+
+    </ul>
+</div>

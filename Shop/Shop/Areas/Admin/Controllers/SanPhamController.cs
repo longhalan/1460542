@@ -27,7 +27,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         // POST: Admin/SanPham/Create
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(shop.SANPHAM sp)
         {
          
@@ -60,7 +60,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         // POST: Admin/SanPham/Edit/5
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(shop.SANPHAM sp1)
         {
             string pathValue = Server.MapPath("~/");
