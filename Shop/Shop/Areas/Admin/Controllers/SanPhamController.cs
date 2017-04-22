@@ -9,8 +9,10 @@ namespace Shop.Areas.Admin.Controllers
     public class SanPhamController : Controller
     {
         // GET: Admin/SanPham
-        public ActionResult Index()
+        public ActionResult List()
         {
+            var List = Models.SanPhamBus.SanPhamBus.List();
+            ViewBag.list = List;
             return View();
         }
 
@@ -52,44 +54,52 @@ namespace Shop.Areas.Admin.Controllers
         // GET: Admin/SanPham/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var LoaiSanPham = Models.LoaiSanPham.LoaiSanPhamBus.List();
+            ViewBag.dslsp = LoaiSanPham;
+            return View(Models.SanPhamBus.SanPhamBus.GetProduct(id));
         }
 
         // POST: Admin/SanPham/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(shop.SANPHAM sp1)
         {
-            try
-            {
-                // TODO: Add update logic here
+            string pathValue = Server.MapPath("~/");
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var hpt = HttpContext.Request.Files[0];
+            if (hpt.FileName == null)
             {
-                return View();
+                Models.SanPhamBus.SanPhamBus.UpdateProduct(sp1, 0);
             }
+            else
+            {
+                if (HttpContext.Request.Files.Count > 0)
+                {
+                    if (hpt.ContentLength > 0)
+                    {
+                        string temp = hpt.FileName;
+                        string RDString = Guid.NewGuid().ToString();
+                        string fullNameImage = "img/" + RDString + temp;
+                        hpt.SaveAs(pathValue + fullNameImage);
+                        sp1.HinhAnh = fullNameImage;
+                    }
+                }
+                Models.SanPhamBus.SanPhamBus.UpdateProduct(sp1, 1);
+            }
+            return RedirectToAction("List");
         }
 
-        // GET: Admin/SanPham/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/SanPham/Delete/5
-        [HttpPost]
+      
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                Models.SanPhamBus.SanPhamBus.Delete(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
             catch
             {
-                return View();
+                return List();
             }
         }
     }

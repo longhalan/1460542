@@ -206,6 +206,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\Admin\Models\LoaiSanPhamBus\LoaiSanPhamBus.cs" />
     <Compile Include="Areas\Admin\Models\SanPhamBus\SanPhamBus.cs" />
@@ -1057,6 +1058,13 @@
     <Content Include="less\mixins.less" />
     <Content Include="less\sb-admin-2.less" />
     <Content Include="less\variables.less" />
+    <Content Include="Areas\Admin\Views\SanPham\List.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
